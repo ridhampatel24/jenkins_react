@@ -6,9 +6,9 @@ def COLOR_MAP = [
 pipeline{
     agent any
     environment{
-        registryCredential = 'ecr:us-east-2:awscreds'
-        appRegistry = "951401132355.dkr.ecr.us-east-2.amazonaws.com/vprofileappimg"
-        vprofileRegistry = "https://951401132355.dkr.ecr.us-east-2.amazonaws.com"    
+        registryCredential = 'ecr:us-east-1:awscreds'
+        appRegistry = "533267180280.dkr.ecr.us-east-1.amazonaws.com/reactrepo"
+        reactappRegistry = "https://533267180280.dkr.ecr.us-east-1.amazonaws.com"    
     }
     tools{
         nodejs "nodeJS"
