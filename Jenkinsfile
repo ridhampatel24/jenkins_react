@@ -47,7 +47,7 @@ pipeline{
         stage('Build App Image') {
             steps {
                 script {
-                    dockerImage = docker.build( "react_app_${BUILD_TIMESTAMP}" + ":$BUILD_NUMBER", "./")
+                    dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./")
                 }
             }
         }
