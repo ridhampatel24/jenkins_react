@@ -1,5 +1,15 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger',
+]
+
 pipeline{
     agent any
+    environment{
+        registryCredential = 'ecr:us-east-2:awscreds'
+        appRegistry = "951401132355.dkr.ecr.us-east-2.amazonaws.com/vprofileappimg"
+        vprofileRegistry = "https://951401132355.dkr.ecr.us-east-2.amazonaws.com"    
+    }
     tools{
         nodejs "nodeJS"
     }
@@ -40,6 +50,17 @@ pipeline{
                     dockerImage = docker.build( "react_app_${BUILD_TIMESTAMP}" + ":$BUILD_NUMBER", "./")
                 }
             }
+        }
+
+        stage('Upload App Image') {
+          steps{
+            script {
+              docker.withRegistry( reactRegistry, registryCredential ) {  
+                dockerImage.push("$BUILD_NUMBER")
+                dockerImage.push('latest')
+              }
+            }
+          }
         }
 
 
