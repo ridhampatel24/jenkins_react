@@ -9,17 +9,11 @@ pipeline{
                 git branch: 'main', url:'https://github.com/ridhampatel24/jenkins_react.git'
             }
         }
-
-        stage('Build'){
-            steps{
-                sh 'npm install'
-            }
-        }
-
+        
         stage('Build App Image') {
             steps {
                 script {
-                    dockerImage = docker.build( "react_app" + ":$BUILD_NUMBER", "./")
+                    dockerImage = docker.build( "react_app${BUILD_TIMESTAMP}" + ":$BUILD_NUMBER", "./")
                 }
             }
         }
