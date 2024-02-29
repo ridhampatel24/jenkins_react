@@ -97,7 +97,7 @@ pipeline{
                 success {
                     slackSend channel: '#jenkinscicd',
                     color: COLOR_MAP[currentBuild.currentResult],
-                    message: "*${currentBuild.currentResult}:* Docker Image Uploaded Succesfully to."
+                    message: "*${currentBuild.currentResult}:* Docker Image Uploaded Succesfully to ECR"
                 }
             }
         }
