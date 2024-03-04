@@ -8,11 +8,15 @@ pipeline{
     environment{
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "533267180280.dkr.ecr.us-east-1.amazonaws.com/reactrepo"
-        reactappRegistry = "https://533267180280.dkr.ecr.us-east-1.amazonaws.com"    
+        reactappRegistry = "https://533267180280.dkr.ecr.us-east-1.amazonaws.com" 
+        cluster = "reactcluster"
+        service = "servicename"   
     }
+
     tools{
         nodejs "nodeJS"
     }
+
     stages {
         stage("Fetch Code"){
             steps{
@@ -101,6 +105,14 @@ pipeline{
                 }
             }
         }
+
+        // stage('Deploy to ECS') {
+        //     steps{
+        //         withAWS(credentials: 'awscreds' , region: 'us-east-1'){
+        //             sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+        //         }
+        //     }
+        // }
         
     }
 
@@ -111,4 +123,6 @@ pipeline{
             message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
     }
+
+
 }
