@@ -10,7 +10,7 @@ pipeline{
         appRegistry = "533267180280.dkr.ecr.us-east-1.amazonaws.com/reactrepo"
         reactappRegistry = "https://533267180280.dkr.ecr.us-east-1.amazonaws.com" 
         cluster = "reactcluster"
-        service = "servicename"   
+        service = "reacttasksvc"   
     }
 
     tools{
@@ -106,13 +106,13 @@ pipeline{
             }
         }
 
-        // stage('Deploy to ECS') {
-        //     steps{
-        //         withAWS(credentials: 'awscreds' , region: 'us-east-1'){
-        //             sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
-        //         }
-        //     }
-        // }
+        stage('Deploy to ECS') {
+            steps{
+                withAWS(credentials: 'awscreds' , region: 'us-east-1'){
+                    sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+                }
+            }
+        }
         
     }
 
