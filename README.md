@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# React App Deployment on ECS with Continuous Delivery Pipeline
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates the deployment of a React app on ECS (Elastic Container Service) using a Continuous Delivery pipeline. Here's an overview of the steps involved:
 
-## Available Scripts
+## Steps:
 
-In the project directory, you can run:
+1. **Testing and Analysis:**
 
-### `npm start`
+   - Code is thoroughly tested and analyzed using SonarQube.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Continuous Delivery Pipeline Setup:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   - Utilizing Jenkins, a Continuous Delivery pipeline is established.
 
-### `npm test`
+3. **Pipeline Workflow:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - The pipeline workflow includes the following stages:
+     - Fetching code from GitHub.
+     - Performing SonarQube analysis.
+     - Creating a multistage Docker image.
+     - Uploading the Docker image to AWS Elastic Container Registry (ECR).
+     - Successfully deploying the app on AWS Elastic Container Service (ECS).
 
-### `npm run build`
+4. **Integration with Slack:**
+   - Slack notifications are integrated into the Jenkins pipeline to provide real-time updates on the deployment process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Workflow Details:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Code Fetching:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - The latest code is fetched from the GitHub repository.
 
-### `npm run eject`
+2. **SonarQube Analysis:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   - The code undergoes analysis using SonarQube to ensure code quality and security.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Docker Image Creation:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - A multistage Docker image is created, ensuring efficient and reliable packaging of the application.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **ECR Image Upload:**
 
-## Learn More
+   - The Docker image is uploaded to the AWS Elastic Container Registry (ECR), providing a secure and scalable storage solution for container images.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. **ECS Deployment:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - The application is deployed on AWS Elastic Container Service (ECS), leveraging its capabilities for managing and scaling containerized applications.
 
-### Code Splitting
+6. **Slack Notifications:**
+   - Slack notifications are sent throughout the pipeline to keep stakeholders informed about the deployment progress and any potential issues.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Getting Started:
 
-### Analyzing the Bundle Size
+To set up a similar deployment pipeline, follow these steps:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Ensure you have access to Jenkins and SonarQube for code analysis.
+2. Set up AWS credentials for Jenkins to interact with AWS services like ECR and ECS.
+3. Configure Jenkins to integrate with Slack for notifications.
+4. Define your pipeline stages and scripts accordingly to match your deployment process.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+With this setup, you can automate the deployment of your React app on ECS with confidence, knowing that each step is thoroughly tested and monitored. Happy deploying! 🚀
