@@ -9,7 +9,7 @@ pipeline{
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "533267180280.dkr.ecr.us-east-1.amazonaws.com/reactrepo"
         reactappRegistry = "https://533267180280.dkr.ecr.us-east-1.amazonaws.com" 
-        cluster = "reactcluster"
+        cluster = "reactapp"
         service = "reactappsvc"   
     }
 
