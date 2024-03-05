@@ -10,7 +10,7 @@ pipeline{
         appRegistry = "533267180280.dkr.ecr.us-east-1.amazonaws.com/reactrepo"
         reactappRegistry = "https://533267180280.dkr.ecr.us-east-1.amazonaws.com" 
         cluster = "reactcluster"
-        service = "reacttasksvc"   
+        service = "reactddtasksvc"   
     }
 
     tools{
